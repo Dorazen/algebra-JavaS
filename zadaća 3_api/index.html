@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="author" content="Dražen Orkić">
+    <meta name="description" content="Ovo je zadaća s API-ima">
+    <title>Age of Empires api</title>
+
+    <style>
+        body {
+            font-family: 'Courier New', Courier, monospace;
+        }
+        td,
+        th,
+        tr {
+            border: 1px solid #EFEFEF;
+            font-size: 13px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <table id="overview"></table>
+
+    <script>
+      var url = "https://age-of-empires-2-api.herokuapp.com/api/v1/civilizations";
+        fetch(url)
+        .then(response => response.json())
+        .then(data => showData(data));
+
+        function showData(data) {
+            let tab = 
+            `<tr>
+                <th>Name</th>
+                <th>Expansion</th>
+                <th>Army type</th>
+                <th>Team bonus</th>
+                <th>Civilization bonus</th>            
+            </tr>`;
+
+            for (let i of data.civilizations) {
+                tab = tab + `<tr>
+                <td><b>${i.name}</b></td>
+                <td><i>${i.expansion}</i></td>
+                <td>${i.army_type}</td>
+                <td>${i.team_bonus}</td>
+                <td>${i.civilization_bonus}</td>
+                </tr>`;
+            }
+            document.getElementById("overview").innerHTML = tab;
+        }
+    </script>
+
+</body>
+
+</html>
+

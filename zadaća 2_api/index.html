@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>Sassy Kanye</title>
+</head>
+
+<body>
+    <p>Refresh the page for more high IQ content</p>
+    <div id=iq></div>
+    <script>
+        const url = "https://api.kanye.rest";
+        fetch(url)
+            .then(response => response.json())
+            .then(data => alert(`${data.quote}`));
+    // .then(data => document.getElementById("iq").innerHTML = `${data.quote}`); //ovaj isto ne radi (pogledaj index3 od vježbe 19)
+    // .then(data => alert(JSON.stringify(`${data.quote}`)));
+    // .then(data => alert(console.log(`${data.quote}`)));   //ovaj ne radi
+
+    //pokušaj stavljanja u html po uzoru na index3 vježbe 19
+    // function tekst (`${data.quote}`){
+    //  let tekst = 
+    // `<p></p>`;
+    // }; 
+    // document.getElementById("iq").innerHTML = tekst;
+    </script>
+
+</body>
+
+</html>

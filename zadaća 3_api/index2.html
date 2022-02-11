@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="author" content="Dražen Orkić">
+    <meta name="description" content="Ovo je zadaća s API-ima">
+    <title>Age of Empires api</title>
+
+    <style>
+        body {
+            font-family: 'Courier New', Courier, monospace;
+        }
+        td,
+        th,
+        tr {
+            border: 1px solid #EFEFEF;
+            font-size: 13px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <table id="overview"></table>
+
+    <script>
+      var url = "https://age-of-empires-2-api.herokuapp.com/api/v1/units";
+        fetch(url)
+        .then(response => response.json())
+        .then(data => showData(data));
+
+        function showData(data) {
+            let tab = 
+            `<tr>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Age</th>
+                <th>Cost</th>
+                <th>Build time</th>
+                <th>Attack</th> 
+                <th>Range</th>               
+            </tr>`;
+
+            for (let i of data.units) {
+                tab = tab + `<tr>
+                <td><b>${i.name}</b></td>
+                <td><i>${i.description}</i></td>
+                <td>${i.age}</td>
+                <td>Wood:${i.cost.Wood ? i.cost.Wood : "0"} Gold:${i.cost.Gold ? i.cost.Gold : "0"}</td>
+                <td>${i.build_time ? i.build_time : "spawned at the start of the game"}</td>
+                <td>${i.attack ? i.attack : "cannot attack"}</td>
+                <td>${i.range ? i.range : "melee"}</td>
+                </tr>`;
+            }
+            document.getElementById("overview").innerHTML = tab;
+        }
+    </script>
+
+</body>
+
+</html>
+<!-- <td>Wood:${i.cost.Wood ? i.cost.Wood : "0"}, Gold:${i.cost.Gold ? i.cost.Gold : "0"}</td> 
+    preko tenerary opcije (?) sam zamijenio prazne objekte/value s custom porukom,
+    na cost samo dodao Wood i Gold jer je objekt imao objekt unutar sebe pa sam se morao "spustiti"
+    u njega da bih dohvatio value za wood i gold -->

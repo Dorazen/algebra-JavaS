@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Age boi</title>
+</head>
+
+<body>
+     <script>
+       const yourName = window.prompt("Enter your name to find out your age");
+       fetch(`https://api.agify.io/?name=${yourName}`)
+       .then(response => response.json())
+       .then(data => alert(`${yourName}, you are ${data.age} years old.`))
+       .catch(error => alert(error));  
+    </script>
+</body>
+
+</html>

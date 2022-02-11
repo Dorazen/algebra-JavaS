@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Cat facts</title>
+</head>
+
+<body>
+    <p>kad osvježite stranicu, dobit ćete novi fact</p>
+    <p id="catFact"></p>
+
+    <script>
+        const url = "https://catfact.ninja/fact";
+        fetch(url) //promise
+            .then(response => response.json())    //što će napraviti ako je uspješno. dodali smo json da bismo dobili podatke natrag u obliku key/value objekta. bez .json bismo samo dobili response s kojim ne možemo raditi
+            .then(data => document.getElementById("catFact").innerHTML = `${data.fact}`) //.then-ova može biti koliko god hoćemo. zadnja metoda treba završiti s ;
+            .catch(error => alert(error));   //što će napraviti ako je neuspješno
+    </script>
+</body>
+
+</html>
